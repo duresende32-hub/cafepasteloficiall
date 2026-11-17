@@ -201,8 +201,14 @@
         <input type="text" id="loginEmail" placeholder="ex: passos@cafepastel.app" autocomplete="username" autocapitalize="none" inputmode="email">
 
         <label>Senha</label>
-        <input type="password" id="loginSenha" placeholder="Senha" autocomplete="current-password"
-               onkeydown="if(event.key==='Enter')fazerLogin()">
+        <div style="position:relative">
+          <input type="password" id="loginSenha" placeholder="Senha" autocomplete="current-password"
+                 autocapitalize="none" autocorrect="off" spellcheck="false" style="padding-right:52px"
+                 onkeydown="if(event.key==='Enter')fazerLogin()">
+          <button type="button" onclick="var i=document.getElementById('loginSenha');i.type=i.type==='password'?'text':'password'"
+                  style="position:absolute;right:8px;top:50%;transform:translateY(-50%);border:none;background:none;font-size:20px;cursor:pointer"
+                  aria-label="Mostrar senha">👁️</button>
+        </div>
 
         <button class="btn destaque" id="btnEntrar" onclick="fazerLogin()">Entrar</button>
         <div class="erro" id="loginErro"></div>
@@ -462,7 +468,7 @@
 
   function fazerLogin() {
     var email = document.getElementById('loginEmail').value.trim().toLowerCase();
-    var senha = document.getElementById('loginSenha').value;
+    var senha = document.getElementById('loginSenha').value.trim();
     var btn = document.getElementById('btnEntrar');
     document.getElementById('loginErro').textContent = '';
     if (!email || !senha) { document.getElementById('loginErro').textContent = 'Informe usuário e senha.'; return; }
